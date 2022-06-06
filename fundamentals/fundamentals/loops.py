@@ -37,19 +37,20 @@ print("First Letter: ", name[0])
 #Access value within dictionary
 
 
-students= [{
-    "first_name": "Alex",
-    "last_name": "Miller",
-    "age": 25
-},
-{
-    "first_name": "Martha",
-    "last_name": "Miller",
-    "age": 22
-}]
+students= {
+    "first_name: ": "Alex",
+    "last_name: ": "Miller",
+    "age: ": 25,
+    "languages: ": ["JavaScript", "Python"]
+}
 
-for keys in students:
-    print(keys, students[keys])
+for key in students:
+    print(key, students[key])
+
+print("--------")
+
+for language in students["languages: "]:
+    print(language)
 
 #While loop within Python
 i = 0
