@@ -5,10 +5,20 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Playground</title>
+    <style>
+        .box {
+            height: 150px; 
+            width: 150px; 
+            border: 2px solid black; 
+            border-radius: 15px;
+        }
+    </style>
 </head>
-<body style="display: flex; align-items:center; width: 1500px">
-    <div style="background-color: blue; height: 150px; width: 150px; margin: 40px; border: 2px solid black;"></div>
-    <div style="background-color: blue; height: 150px; width: 150px; margin: 40px; border: 2px solid black;"></div>
-    <div style="background-color: blue; height: 150px; width: 150px; margin: 40px; border: 2px solid black;"></div>
+<body>
+    <div style="display: flex; justify-content: space-evenly">
+        {% for i in range(0, num): %}
+        <div class="box" style="background-color: {{color}};"></div>
+        {% endfor %}
+    </div>
 </body>
 </html>
