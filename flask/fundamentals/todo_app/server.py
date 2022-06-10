@@ -1,6 +1,8 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect, session
 
 app = Flask(__name__)
+app.secret_key = "secret"
+
 
 list_todos = [{
     "todo" : "Learn templates in flask",
@@ -18,6 +20,10 @@ list_todos = [{
 @app.route("/")
 @app.route("/todos")
 def get_all_todos():
+    if "num_of_visits" in session:
+        session["num_of_visits"] += 1
+    else:
+        session["num_of_visits"] = 1
     return render_template("index.html", first_name = "Alexander", list_todos = list_todos)
 
 @app.route("/todo/new")

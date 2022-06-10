@@ -10,6 +10,7 @@
 <body>
     <div class="main">
         <h1>Welcome to the homepage {{first_name}}</h1>
+        <p>Number of visits: {{session["num_of_visits"]}}</p>
         <ul>
             {% for element in list_todos: %}
             <li>
