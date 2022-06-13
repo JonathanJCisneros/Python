@@ -2,7 +2,8 @@ from flask import Flask, render_template, request, redirect, session
 
 app = Flask(__name__)
 
-app.secret_key="Maybe important info.."
+app.secret_key = "Maybe important info.."
+
 
 @app.route("/")
 def lets_start():
@@ -10,6 +11,7 @@ def lets_start():
 
 @app.route("/process", methods = ['POST'])
 def new_survey():
+    print(request.form)
     session["name"] = request.form["name"]
     session["location"] = request.form["location"]
     session["language"] = request.form["language"]
