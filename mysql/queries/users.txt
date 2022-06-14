@@ -1,0 +1,29 @@
+SELECT *
+FROM users;
+
+INSERT INTO users(first_name, last_name, email)
+VALUES('Jonathan', 'Cisneros', 'jcisneros@avvo.com'),
+	  ('Kevin', 'Orozco', 'nintendo@games.com'),
+      ('George','Lopez', 'notfunny@show.com');
+      
+SELECT *
+FROM users
+WHERE email = 'jcisneros@avvo.com';
+
+SELECT *
+FROM users
+WHERE id = 3;
+
+UPDATE users
+SET last_name = 'Pancakes'
+WHERE id = 3;
+
+DELETE FROM users
+WHERE id = 2;
+
+SELECT first_name
+FROM users;
+
+SELECT first_name
+FROM users
+ORDER BY id DESC;
