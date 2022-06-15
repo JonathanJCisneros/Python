@@ -1,4 +1,5 @@
-from mysqlconnection import connectToMySQL
+from flask_app.config.mysqlconnection import connectToMySQL
+from flask_app import DATABASE
 
 class Todo:
     def __init__(self, data):
@@ -13,7 +14,7 @@ class Todo:
     def get_all(cls):
         query = "SELECT * FROM todos;"
 
-        result = connectToMySQL("todos_scheme").query_db(query)
+        result = connectToMySQL(DATABASE).query_db(query)
         list_todos = []
 
         for todo in result:
@@ -26,7 +27,7 @@ class Todo:
         query = "INSERT INTO todos(todo, status, user_id) " 
         query += "VALUES(%(todo)s, %(status)s, %(user_id)s);"
 
-        id_new_todo = connectToMySQL("todos_scheme").query_db(query, data)
+        id_new_todo = connectToMySQL(DATABASE).query_db(query, data)
 
         print(id_new_todo)
         return id_new_todo
