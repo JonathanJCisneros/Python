@@ -10,7 +10,7 @@ def get_all_todos():
         session["num_of_visits"] = 1
 
     list_of_todos = Todo.get_all()
-    return render_template("index.html", first_name = "Alexander", list_of_todos = list_of_todos)
+    return render_template("index.html", list_of_todos = list_of_todos)
 
 @app.route("/todo/new")
 def display_create_todo():

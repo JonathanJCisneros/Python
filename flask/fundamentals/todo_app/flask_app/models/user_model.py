@@ -15,9 +15,9 @@ class User:
         query += "FROM users "
         query += "WHERE first_name=%(first_name)s AND last_name=%(last_name)s;"
 
-        results = connectToMySQL(DATABASE).query_db(query,data)
+        result = connectToMySQL(DATABASE).query_db(query,data)
 
-        if len(results) > 0:
-            return cls(results[0])
+        if len(result) > 0:
+            return cls(result[0])
         else:
             return None
