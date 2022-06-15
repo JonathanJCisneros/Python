@@ -1,21 +1,9 @@
 from flask import Flask, render_template, request, redirect, session
+from todo import Todo
 
 app = Flask(__name__)
 app.secret_key = "secret"
 
-
-list_todos = [{
-    "todo" : "Learn templates in flask",
-    "status" : "Complete"
-},
-{
-    "todo" : "Learn Object Orientation Programming",
-    "status" : "Complete"
-},
-{
-    "todo" : "Learn Deployment",
-    "status" : "Cancel"
-}]
 
 @app.route("/")
 @app.route("/todos")
@@ -24,7 +12,9 @@ def get_all_todos():
         session["num_of_visits"] += 1
     else:
         session["num_of_visits"] = 1
-    return render_template("index.html", first_name = "Alexander", list_todos = list_todos)
+
+    list_of_todos = Todo.get_all()
+    return render_template("index.html", first_name = "Alexander", list_of_todos = list_of_todos)
 
 @app.route("/todo/new")
 def display_create_todo():
@@ -32,12 +22,7 @@ def display_create_todo():
 
 @app.route("/todo/new", methods = ['POST'])
 def create_todo():
-    print(request.form)
-    new_todo = {
-        "todo" : request.form["todo"],
-        "status" : request.form["status"]
-    }
-    list_todos.append(new_todo)
+    Todo.create(request.form)
     return redirect("/todos")
 
 
