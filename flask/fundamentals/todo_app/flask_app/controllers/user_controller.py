@@ -17,4 +17,21 @@ def user_login():
     else:
         session['first_name'] = result.first_name
         session['last_name'] = result.last_name
+        session['id'] = result.id
         return redirect("/todos")
+
+@app.route("/display/user/")
+def get_user_by_id():
+    data = {
+        "id" : session['id']
+    }
+    current_user = User.get_one_with_todos(data)
+
+    if current_user == None:
+        user_data = {
+            "first_name" : session["first_name"],
+            "last_name" : session["last_name"]
+        }
+    
+        current_user = User.get_one(user_data)
+    return render_template("userInfo.html", current_user = current_user)

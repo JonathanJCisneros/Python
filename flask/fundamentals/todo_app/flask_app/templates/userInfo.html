@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Todos App</title>
+    </head>
+    <body>
+        <h1>{{current_user.first_name}} {{current_user.last_name}}, your todo's:</h1>
+        <ul>
+            {% for todo in current_user.list_todos:%}
+                <li>
+                    {{todo.status}} - {{todo.todo}} - {{todo.created_at}}
+                </li>
+            {% endfor %}
+        </ul>
+        <div>
+            {% if current_user.list_todos  | length == 0: %}
+                <h1>You currently don't have any todos!</h1>
+            {% endif %}
+        </div>
+        <a href="/">Return to Home</a>
+    </body>
+</html>

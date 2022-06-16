@@ -15,10 +15,10 @@ class User:
     def read_all(cls):
         query = "SELECT * FROM users;"
 
-        list = connectToMySQL(DATABASE).query_db(query)
+        result_list = connectToMySQL(DATABASE).query_db(query)
         user_list = []
 
-        for user in list:
+        for user in result_list:
             user_list.append(cls(user))
 
         return user_list

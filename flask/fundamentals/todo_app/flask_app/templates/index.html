@@ -11,6 +11,7 @@
         <div class="main">
             <h1>Welcome to the homepage {{session['first_name']}} {{session['last_name']}}. This is now with an MVC architechture.</h1>
             <p>Number of visits: {{session["num_of_visits"]}}</p>
+            <a href="/display/user/">Go to my todo's</a>
             <ul>
                 {% for element in list_of_todos: %}
                 <li>
