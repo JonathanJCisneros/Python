@@ -7,19 +7,23 @@
         <title>Todos App</title>
     </head>
     <body>
-        <h1>{{current_user.first_name}} {{current_user.last_name}}, your todo's:</h1>
-        <ul>
-            {% for todo in current_user.list_todos:%}
-                <li>
-                    {{todo.status}} - {{todo.todo}} - {{todo.created_at}}
-                </li>
-            {% endfor %}
-        </ul>
-        <div>
-            {% if current_user.list_todos  | length == 0: %}
-                <h1>You currently don't have any todos!</h1>
-            {% endif %}
-        </div>
-        <a href="/">Return to Home</a>
+        <h1>{{session['first_name']}} {{session['last_name']}}, your todo's:</h1>
+        {% if current_user != 0: %}
+            <ul>
+                {% for todo in current_user.list_todos:%}
+                    <li>
+                        {{todo.status}} - {{todo.todo}} - {{todo.created_at}}
+                        <a href="/todo/{{todo.id}}/update">Edit</a>
+                        <a href="/todo/{{todo.id}}/delete">Delete</a>
+                    </li>
+                {% endfor %}
+            </ul>
+            {% else: %}
+            <div>
+                    <h1>You currently don't have any todos!</h1>
+                
+            </div>
+        {% endif %}
+        <a href="/todos">Return to Home</a>
     </body>
 </html>

@@ -21,6 +21,33 @@ def create_todo():
     Todo.create(request.form)
     return redirect("/todos")
 
+@app.route("/todo/<int:id>/update")
+def get_todo_by_id(id):
+    data = {
+        "id" : id
+    }
+    current_todo = Todo.get_one(data)
+    return render_template("editTodoForm.html", current_todo = current_todo)
+
+@app.route("/todo/<int:id>/update", methods = ['POST'])
+def update_todo_by_id(id):
+    data = {
+        "id" : id,
+        "status" : request.form['status'],
+        "todo" : request.form['todo']
+    }
+    Todo.update_one(data)
+    return redirect("/display/user")
+
+@app.route("/todo/<int:id>/delete")
+def delete_todo_by_id(id):
+    data = {
+        "id" : id
+    }
+    Todo.delete_one(data)
+    return redirect("/display/user")
+
+
 """
 GET - read and display
 URL of the route to display all: the name of the list or dictionary that we are about to display

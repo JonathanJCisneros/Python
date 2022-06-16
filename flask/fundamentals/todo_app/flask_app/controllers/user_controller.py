@@ -10,13 +10,13 @@ def display_login():
 @app.route("/login", methods = ['POST'])
 def user_login():
     result = User.get_one(request.form)
-    print(result)
 
     if result == None:
         return redirect("/login")
     else:
         session['first_name'] = result.first_name
         session['last_name'] = result.last_name
+        session['email'] = result.email
         session['id'] = result.id
         return redirect("/todos")
 
@@ -27,11 +27,4 @@ def get_user_by_id():
     }
     current_user = User.get_one_with_todos(data)
 
-    if current_user == None:
-        user_data = {
-            "first_name" : session["first_name"],
-            "last_name" : session["last_name"]
-        }
-    
-        current_user = User.get_one(user_data)
     return render_template("userInfo.html", current_user = current_user)

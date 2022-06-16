@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+</head>
+<body>
+    <form action="/todo/{{current_todo.id}}/update" method="POST">
+        <div>
+            <label>Edit todo:</label>
+            <input type="text" id="todo" name="todo" value="{{current_todo.todo}}">
+        </div>
+        <div>
+            <label for="status">
+                Edit Status:
+            </label>
+            <select name="status" id="status">
+                <option value="Complete" {% if current_todo.status == "Complete": %} selected {% endif %}>
+                    Complete
+                </option>
+                <option value="In Progress" {% if current_todo.status == "In Progress": %} selected {% endif %}></option>>In Progress</option>
+                <option value="Cancelled" {% if current_todo.status == "Cancelled": %} selected {% endif %}></option>>Cancelled</option>
+            </select>
+        </div>
+        <div>
+            <button type="submit">Edit</button>
+        </div>
+    </form>
+</body>
+</html>

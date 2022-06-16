@@ -9,12 +9,13 @@ class User:
         self.last_name = data['last_name']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.email = data['email']
 
     @classmethod
     def get_one(cls, data):
         query = "SELECT * "
         query += "FROM users "
-        query += "WHERE first_name=%(first_name)s AND last_name=%(last_name)s;"
+        query += "WHERE email=%(email)s AND password=%(password)s;"
 
         result = connectToMySQL(DATABASE).query_db(query,data)
 
@@ -27,12 +28,14 @@ class User:
     def get_one_with_todos(cls, data):
         query =  "SELECT * "
         query += "FROM users "
-        query += "JOIN todos ON users.id = todos.ser_id "
+        query += "JOIN todos ON users.id = todos.user_id "
         query += "WHERE users.id = %(id)s;"
 
         result = connectToMySQL(DATABASE).query_db(query, data)
         if len(result) > 0:
             current_user = cls(result[0])
+            list_todos= [] 
+            
             for row in result:
                 current_todo = {
                     "id" : row["todos.id"],

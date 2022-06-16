@@ -32,6 +32,35 @@ class Todo:
         print(id_new_todo)
         return id_new_todo
 
+    @classmethod
+    def get_one(cls, data):
+        query =  "SELECT * "
+        query += "FROM todos "
+        query += "WHERE id = %(id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query, data)
+
+        if len(result) > 0:
+            todo = cls(result[0])
+            return todo
+        else:
+            return None
+
+    @classmethod
+    def update_one(cls, data):
+        query =  "UPDATE todos "
+        query += "SET todo = %(todo)s, status = %(status)s "
+        query += "WHERE id = %(id)s;"
+
+        return connectToMySQL(DATABASE).query_db(query, data)
+
+    @classmethod
+    def delete_one(cls, data):
+        query =  "DELETE FROM todos "
+        query += "WHERE id = %(id)s;"
+
+        return connectToMySQL(DATABASE).query_db(query, data)
+
 """
 SELECT:
 def get_all()
