@@ -18,7 +18,7 @@ def new_user():
     return redirect("/users")
 
 @app.route("/users/<int:id>")
-def show_user():
+def show_user(id):
     data = {
         "id" : id
     }
@@ -28,13 +28,13 @@ def show_user():
 @app.route("/users/<int:id>/edit")
 def edit(id):
     data ={ 
-        "id":id
+        "id": id
     }
 
     users = User.get_one(data)
     return render_template("edit.html",users=users)
 
-@app.route("/user/destroy")
+@app.route("/user/destroy/<int:id>")
 def destroy(id):
     data ={
         "id": id
@@ -42,7 +42,11 @@ def destroy(id):
     User.delete(data)
     return redirect("/users")
 
-@app.route("/user/update",methods=['POST'])
-def update():
-    User.update(request.form)
+@app.route("/user/update/<int:id>", methods=['POST'])
+def update(id):
+    data = {
+        **request.form,
+        "id" : id
+    }
+    User.update(data)
     return redirect("/users")

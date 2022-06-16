@@ -26,11 +26,11 @@
                     <td scope="row">{{element.first_name}} {{element.last_name}}</td>
                     <td scope="row">{{element.email}}</td>
                     <td scope="row">{{element.created_at}}</td>
-                    <td scope="row"><a href="/users/{{element.id}}">Show</a> | <a href="/users/{{element.id}}/edit">Edit</a> | <a href="/user/destroy">Delete</a></td>
+                    <td scope="row"><a href="/users/{{element.id}}">Show</a> | <a href="/users/{{element.id}}/edit">Edit</a> | <a href="/user/destroy/{{element.id}}">Delete</a></td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         <a href="/user/new">Add a New User</a>
-</body>
+    </body>
 </html>

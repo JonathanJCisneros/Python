@@ -37,7 +37,11 @@ class User:
         query  = "SELECT * FROM users WHERE id = %(id)s;"
         
         result = connectToMySQL(DATABASE).query_db(query,data)
-        return result
+        if len(result) > 0:
+            return cls(result[0])
+        else:
+            return None
+        
 
     @classmethod
     def update(cls,data):
