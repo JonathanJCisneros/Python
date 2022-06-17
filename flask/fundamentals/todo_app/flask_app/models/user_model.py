@@ -2,7 +2,7 @@ from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DATABASE
 from flask_app.models.todo_model import Todo
 from flask import flash, session
-from flask import re
+import re
 
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
@@ -95,6 +95,6 @@ class User:
             flash("Password must be at least 4 characters long.", "error_register_password")
             isValid = False
         if not EMAIL_REGEX.match(data['email']):
-            flash("Please provide a valid email." "error_register_email")
+            flash("Please provide a valid email.", "error_register_email")
             isValid = False
         return isValid

@@ -24,22 +24,22 @@
             <br>
             <br>
             <label for="email">Email:</label>
-            <input type="text" id="email" name="email">
+            <input type="text" name="email">
             {% for message in get_flashed_messages(category_filter = ["error_register_email"]): %}
                 {{message}}
             {% endfor %}
             <br>
             <br>
             <label for="password">Password:</label>
-            <input type="text" id="password" name="password">
+            <input type="text" id="new_password" name="password">
             {% for message in get_flashed_messages(category_filter = ["error_register_password"]): %}
                 {{message}}
             {% endfor %}
             <br>
             <br>
             <label for="password">Confirm Password:</label>
-            <input type="text" id="password" name="password">
-            {% for message in get_flashed_messages(category_filter = ["error_register_password"]): %}
+            <input type="text" id="password_confirmation" name="password_confirmation">
+            {% for message in get_flashed_messages(category_filter = ["error_register_password_confirmation"]): %}
                 {{message}}
             {% endfor %}
             <br>
