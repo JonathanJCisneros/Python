@@ -1,0 +1,68 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+}
+
+.header {
+    text-align: center;
+    margin-top: 150px;
+}
+
+.header h1{
+    font-size: 80px;
+    text-decoration: underline;
+}
+
+.content {
+    margin-top: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.newdojo {
+    background-color: gray;
+    height: 300px;
+    width: 400px;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.newdojo h1 {
+    color: yellow;
+    margin: 15px;
+}
+
+.newdojo form {
+    margin: 15px;
+}
+
+.form_label {
+    color: white;
+    margin-bottom: 5px;
+}
+
+.alldojos {
+    background-color: lightgray;
+    height: 500px;
+    width: 400px;
+    border-radius: 30px;
+    padding: 20px;
+}
+
+.addninja {
+    text-align: center;
+}
+
+.addninja .btn {
+    height: 60px;
+    width: 150px;
+    color: white;
+    text-decoration: none;
+}
+
+.addninja a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}

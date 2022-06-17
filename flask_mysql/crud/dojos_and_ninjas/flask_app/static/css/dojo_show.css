@@ -1,0 +1,32 @@
+* {
+    margin: 0px auto;
+    padding: 70px;
+}
+
+h1 {
+    color: darkgreen;
+    text-align: center;
+    text-decoration: underline;
+}
+
+.table {
+    background-color: lightgray;
+    padding: 25px;
+    border-radius: 15px;
+    width: 700px;
+}
+
+.home {
+    text-align: center;
+}
+
+.home .btn {
+    color: white;
+    text-decoration: none;
+}
+
+.home a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}

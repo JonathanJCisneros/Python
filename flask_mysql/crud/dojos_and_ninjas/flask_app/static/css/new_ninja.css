@@ -1,0 +1,39 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+}
+
+h1 {
+    color: red;
+    text-align: center;
+    text-decoration: underline;
+    margin-top: 150px;
+}
+
+.form {
+    padding: 25px;
+    margin-top: 70px;
+    width: 400px;
+    background-color: lightgray;
+    border-radius: 25px;
+}
+
+.form label {
+    font-weight: bold;
+}
+
+.home {
+    margin-top: 50px;
+    text-align: center;
+}
+
+.home .btn {
+    color: white;
+    text-decoration: none;
+}
+
+.home a {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+}
