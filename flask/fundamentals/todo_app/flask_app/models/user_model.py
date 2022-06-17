@@ -1,6 +1,10 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DATABASE
 from flask_app.models.todo_model import Todo
+from flask import flash, session
+from flask import re
+
+EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 
 class User:
     def __init__(self, data):
@@ -50,3 +54,47 @@ class User:
             current_user.list_todos = list_todos
             return current_user
         return None
+
+    @staticmethod
+    def validate_login(data):
+        isValid = True
+        if data['email'] == "":
+            flash("Please provide your email.", "error_email" )
+            isValid = False
+        if data['password'] == "":
+            flash("Please provide your password.", "error_password")
+            isValid = False
+        return isValid
+
+    @staticmethod
+    def validate_session():
+        if "id" in session:
+            return True
+        else:
+            flash("You must be logged in to see the infromation on this page.", "error_login")
+            return False
+
+    @staticmethod
+    def validate_registration(data):
+        isValid = True
+        if data['first_name'] == "":
+            flash("You must provide your first name.", "error_register_first_name" )
+            isValid = False
+        if data['last_name'] == "":
+            flash("You must provide your last name.", "error_register_last_name" )
+            isValid = False
+        if data['email'] == "":
+            flash("You must provide your email.", "error_register_email" )
+            isValid = False
+        if data['password'] == "":
+            flash("You must provide a password.", "error_register_password")
+            isValid = False
+        if data['password_confirmation'] != data['password']:
+            flash("Your password confirmationan doesn't match.", "error_register_password_confirmation")
+        if len(data['password']) < 4:
+            flash("Password must be at least 4 characters long.", "error_register_password")
+            isValid = False
+        if not EMAIL_REGEX.match(data['email']):
+            flash("Please provide a valid email." "error_register_email")
+            isValid = False
+        return isValid
