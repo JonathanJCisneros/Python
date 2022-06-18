@@ -14,6 +14,7 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
         self.email = data['email']
+        self.password = data['password']
 
     @classmethod
     def get_one(cls, data):
@@ -54,6 +55,14 @@ class User:
             current_user.list_todos = list_todos
             return current_user
         return None
+    
+    @classmethod
+    def create(cls, data):
+        query =  "INSERT INTO users(first_name, last_name, email, password) "
+        query += "VALUES(%(first_name)s, %(last_name)s, %(email)s, %(password)s);"
+
+        new_user = connectToMySQL(DATABASE).query_db(query, data)
+        return new_user
 
     @staticmethod
     def validate_login(data):

@@ -18,6 +18,6 @@ def get_dojo_by_id(id):
     data = {
         "id" : id
     }
-    ninja_list = Dojo.get_list(data)
-    return render_template("dojo_show.html", ninja_list = ninja_list)
+    one_dojo = Dojo.get_list(data)
+    return render_template("dojo_show.html", one_dojo = one_dojo)
 

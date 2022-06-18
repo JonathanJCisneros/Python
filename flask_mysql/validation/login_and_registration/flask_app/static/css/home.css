@@ -1,0 +1,23 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+    font-family: Arial;
+}
+
+.container {
+    background-color: peachpuff;
+    width: 1000px;
+    height: 800px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.register {
+    background-color: gray;
+}
+
+.login {
+    background-color: lightgray;
+
+}

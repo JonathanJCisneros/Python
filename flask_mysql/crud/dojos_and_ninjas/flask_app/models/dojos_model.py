@@ -8,6 +8,7 @@ class Dojo:
         self.name = data['name']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
+        self.ninja_list = []
 
     @classmethod
     def get_all(cls):
@@ -27,9 +28,9 @@ class Dojo:
         query =  "INSERT INTO dojos(name) "
         query += "VALUES(%(dname)s)"
 
-        new_dojo = connectToMySQL(DATABASE).query_db(query, data)
+        new_dojo_id = connectToMySQL(DATABASE).query_db(query, data)
 
-        return new_dojo
+        return new_dojo_id
 
     @classmethod
     def get_list(cls, data):
@@ -39,9 +40,18 @@ class Dojo:
         query += "WHERE dojos.id = %(id)s;"
 
         result = connectToMySQL(DATABASE).query_db(query, data)
-        class_list = []
+        one_dojo = cls(result[0])
 
-        for students in result:
-            class_list.append(Ninja(students))
+        for ninja in result:
+            ninja_info = {
+                "id" : ninja['ninjas.id'],
+                "first_name" : ninja['first_name'],
+                "last_name" : ninja['last_name'],
+                "age" : ninja['age'],
+                "created_at" : ninja['ninjas.created_at'],
+                "updated_at" : ninja['ninjas.updated_at'],
+                "dojo_id" : ninja['id']
+            }
+            one_dojo.ninja_list.append(Ninja(ninja_info))
+        return one_dojo
 
-        return class_list
