@@ -1,0 +1,64 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+}
+
+body {
+    
+    text-align: center;
+    padding: 100px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.new {
+    background-color: gray;
+    text-align: left;
+    padding: 20px;
+    border-radius: 15px;
+    height: 300px;
+    width: 300px;
+}
+.new h1 {
+    margin-top: 20px;
+    margin-bottom: 15px;
+    color: white;
+}
+
+.new label {
+    color: yellow;
+}
+
+.new label{
+    margin-bottom: 10px;
+}
+
+.new input {
+    margin-bottom: 30px;
+} 
+
+.all {
+    background-color: lightgray;
+    text-align: left;
+    padding: 20px;
+    border-radius: 15px;
+    height: 300px;
+    width: 300px;
+}
+
+.all h1{
+    color: darkgreen;
+    margin-top: 20px;
+}
+
+.all li {
+    list-style-type: none;
+}
+
+.home {
+    text-align: center;
+}

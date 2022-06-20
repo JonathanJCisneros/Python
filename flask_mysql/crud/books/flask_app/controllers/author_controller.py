@@ -12,3 +12,11 @@ def display_all_authors():
 def add_author():
     Author.create_author(request.form)
     return redirect("/authors")
+
+@app.route("/authors/<int:id>")
+def get_list(id):
+    data = {
+        "id" : id
+    }
+    author_info = Author.get_list(data)
+    return render_template("author_show.html", author_info = author_info)
