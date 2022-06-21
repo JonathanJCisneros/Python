@@ -4,10 +4,24 @@
     font-family: Arial;
 }
 
+
+.title {
+    text-align: center;
+    margin-top: 150px;
+    color: blue;
+    font-size: 60px;
+    font-weight: bold;
+}
+
+h2 {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+}
+
 .container {
-    background-color: peachpuff;
-    width: 1000px;
-    height: 800px;
+    width: 1200px;
+    height: auto;
     display: flex;
     justify-content: space-around;
     align-items: center;
@@ -15,9 +29,32 @@
 
 .register {
     background-color: gray;
+    padding: 20px;
+    width: 350px;
+    border-radius: 30px;
+}
+
+.register h1 {
+    font-weight: bold;
+    color: yellow;
+}
+
+.register label {
+    color: blue;
 }
 
 .login {
     background-color: lightgray;
+    padding: 20px;
+    width: 350px;
+    border-radius: 30px;
+}
 
+.login h1 {
+    font-weight: bold;
+    color: green;
+}
+
+.login label {
+    color: blue;
 }

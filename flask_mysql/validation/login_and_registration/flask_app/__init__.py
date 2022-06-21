@@ -1,4 +1,5 @@
 from flask import Flask
 
 app = Flask(__name__)
-DATABASE = "login_and_registration_schema"
+app.secret_key = "secret"
+DATABASE = "login_and_register_schema"
