@@ -12,7 +12,7 @@
         <div class="container">
             <div class="new">
                 <h1>New Author</h1>
-                <form action="/new_author" method="POST">
+                <form action="/create/author" method="POST">
                     <label class="form_label" for="name">Name:</label>
                     <input class="form-control" type="text" name="name" id="name" placeholder="Please type Author Name...">
                     <button type="submit" class="btn btn-primary">Create</button>
@@ -20,9 +20,11 @@
             </div>
             <div class="all">
                 <h1>All Authors</h1>
+                <ul>
                 {% for author in all_authors: %}
-                    <a href="/authors/{{author.id}}">{{author.name}}</a>
+                    <li><a href="/authors/{{author.id}}">{{author.name}}</a></li>
                 {% endfor %}
+                </ul>
             </div>
         </div>
         <div class="add_book">

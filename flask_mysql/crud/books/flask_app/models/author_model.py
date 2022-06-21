@@ -8,47 +8,55 @@ class Author:
         self.name = data['name']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
-        self.book_list = []
+        self.favorite_books = []
 
     @classmethod
     def get_all(cls):
         query = "SELECT * FROM authors;"
-        result = connectToMySQL(DATABASE).query_db(query)
-        author_list = []
-
-        for author in result:
-            author_list.append(cls(author))
-
-        return author_list
+        authors = []
+        results = connectToMySQL(DATABASE).query_db(query)
+        for row in results:
+            authors.append(cls(row))
+        return authors
 
     @classmethod
-    def create_author(cls, data):
-        query =  "INSERT INTO authors(name) "
-        query += "VALUES(%(name)s);"
-
-        result = connectToMySQL(DATABASE).query_db(query,data)
-
-        return result
+    def save(cls,data):
+        query = "INSERT INTO authors (name) VALUES (%(name)s);"
+        return connectToMySQL(DATABASE).query_db(query,data)
 
     @classmethod
-    def get_list(cls, data):
-        query =  "SELECT * "
-        query += "FROM authors "
-        query += "LEFT JOIN favorites ON authors.id = favorites.author_id "
-        query += "LEFT JOIN books ON favorites.book_id = books.id "
-        query += "WHERE authors.id = %(id)s"
+    def unfavorited_authors(cls,data):
+        query = "SELECT * FROM authors WHERE authors.id NOT IN ( SELECT author_id FROM favorites WHERE book_id = %(id)s );"
+        authors = []
+        results = connectToMySQL(DATABASE).query_db(query,data)
+        for row in results:
+            authors.append(cls(row))
+        return authors
 
-        result = connectToMySQL(DATABASE).query_db(query, data)
+    @classmethod
+    def add_favorite(cls,data):
+        query = "INSERT INTO favorites (author_id,book_id) VALUES (%(author_id)s,%(book_id)s);"
+        return connectToMySQL(DATABASE).query_db(query,data)
 
-        favorite_books = cls(result[0])
 
-        for book in result:
-            book_info = {
-                "id" : book['books.id'],
-                "title" : book['title'],
-                "num_of_pages" : book['num_of_pages'],
-                "created_at" : book['books.created_at'],
-                "updated_at" : book['books.updated_at']
+    @classmethod
+    def get_by_id(cls,data):
+        query = "SELECT * FROM authors LEFT JOIN favorites ON authors.id = favorites.author_id LEFT JOIN books ON books.id = favorites.book_id WHERE authors.id = %(id)s;"
+        results = connectToMySQL(DATABASE).query_db(query,data)
+
+        author = cls(results[0])
+
+        for row in results:
+
+            if row['books.id'] == None:
+                break
+
+            data = {
+                "id": row['books.id'],
+                "title": row['title'],
+                "num_of_pages": row['num_of_pages'],
+                "created_at": row['books.created_at'],
+                "updated_at": row['books.updated_at']
             }
-            favorite_books.book_list.append(book.Book(data))
-        return favorite_books
+            author.favorite_books.append(Book(data))
+        return author
