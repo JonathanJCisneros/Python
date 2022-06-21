@@ -70,5 +70,5 @@ def register_one():
         session['first_name'] = request.form['first_name']
         session['last_name'] = request.form['last_name']
         session['email'] = request.form['email']
-        session['user_id'] = user_id
+        session['id'] = user_id
         return redirect("/dashboard")
