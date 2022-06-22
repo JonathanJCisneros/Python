@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Dojo Survey</title>
+        <link rel="stylesheet" type="text/css "href="{{url_for('static', filename='style.css')}}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    </head>
+    <body>
+        
+        <form class="form" action="/process" method="post">
+            <h1>Dojo Survey</h1>
+            {% for message in get_flashed_messages(): %}
+                <p>{{message}}</p>
+            {% endfor %}
+            <div class="mb-3">
+                <label for="name" class="form_label">Name:</label>
+                <input type="text" class="form-control" name="name" id="name" placeholder="Please type name">
+            </div>
+            <label for="location" class="form_label">Dojo Location:</label>
+            <select name="location" id="location" class="form-select" aria-label="Default select example">
+                <option selected>--Select Location--</option>
+                <option value="Seattle">Seattle</option>
+                <option value="Chicago">Chicago</option>
+                <option value="Online">Online</option>
+                <option value="Burbank">Burbank</option>
+                <option value="Bellevue">Bellevue</option>
+            </select>
+            <label for="language" class="form_label">Select Favorite Language</label>
+            <select class="form-select" aria-label="Default select example" id="language" name="language">
+                <option selected>--Select Favorite Language--</option>
+                <option value="HTML">HTML</option>
+                <option value="CSS">CSS</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Python">Python</option>
+                <option value="C#">C#</option>
+            </select>
+            <label for="comments" class="form_label">Comments:</label>
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="Leave a comment here" id="comments" name="comments" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Comments</label>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </body>
+</html>
