@@ -8,18 +8,36 @@
     </head>
     <body>
         <div class="main">
-            <h1>Welcome to the homepage {{session['first_name']}} {{session['last_name']}}. Here are the recipes!</h1>
-            <ul>
-                {% for element in list_of_todos: %}
-                <li>
-                    {{element.status}} - {{element.todo}} - {{element.created_at}}
-                </li>
-                {% endfor %}
-            </ul>
+            <h1>Welcome {{session['first_name']}}</h1>
+            <div>
+                <a href="/display/recipe">Create</a>
+                <a href="/logout">Logout</a>
+            </div>
+            <h3>The recipes are:</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Under 30 Minutes?</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for recipe in recipes: %}
+                    <tr>
+                        <td>{{recipe.name}}</td>
+                        <td>{{recipe.under_thirty}}</td>
+                        <td>
+                            <a href="/recipe/{{recipe.id}}">view instructions</a>
+                        {% if recipe.user_id == session['user_id']: %}
+                            <a href="/recipe/edit/{{recipe.id}}">edit</a>
+                            <a href="/recipe/delete/{{recipe.id}}">delete</a>
+                        {% endif %}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
         </div>
-        <a href="/todo/new">Add new todo</a>
-        <form action="/logout" method="POST">
-            <button type="submit">Logout</button>
-        </form>
     </body>
 </html>

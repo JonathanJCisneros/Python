@@ -25,15 +25,15 @@ def create_user():
             "last_name" : request.form['last_name'],
             "password" : bcrypt.generate_password_hash(request.form['password'])
         }
-        User.create(data)
+        user_id = User.create(data)
         session['email'] = request.form['email']
         session['first_name'] = request.form['first_name']
         session['last_name'] = request.form['last_name']
         session['user_id'] = user_id
         return redirect("/dashboard")
     else:
-        # return an error message with flash
-        pass
+        flash("Email already in use, please provide another", "error_email")
+        return redirect("/")
 
 
 @app.route("/logout")
@@ -51,9 +51,11 @@ def login():
     result = User.get_one(data)
 
     if result == None:
+        # display flash message
         pass
     else:
         if not bcrypt.check_password_hash(result.password, request.form['password']):
+            # display flash message
             pass
         else:
             session['email'] = result.email

@@ -4,9 +4,9 @@ from flask_app.controllers import recipe_controller
 
 class Recipe:
     def __init__(self, data):
-        self.id = data['data']
+        self.id = data['id']
         self.name = data['name']
-        self.description['description']
+        self.description = data['description']
         self.instructions = data['instructions']
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
@@ -15,8 +15,8 @@ class Recipe:
 
     @classmethod
     def create(cls,data):
-        query =  "INSERT INTO recipes(name, description, instructions, under_thirty, user_id) "
-        query += "VALUES(%(name)s, %(description)s, %(instructions)s, %(udner_thirty)s, %(user_id)s);"
+        query =  "INSERT INTO recipes(name, description, instructions, created_at, under_thirty, user_id) "
+        query += "VALUES(%(name)s, %(description)s, %(instructions)s, %(created_at)s, %(under_thirty)s, %(user_id)s);"
 
         return connectToMySQL(DATABASE).query_db(query, data)
 
@@ -33,3 +33,27 @@ class Recipe:
             for recipe in result:
                 recipes.append(cls(recipe))
         return recipes
+
+    @classmethod
+    def get_one(cls, data):
+        query =  "SELECT * "
+        query += "FROM recipes "
+        query += "WHERE id = %(id)s;"
+
+        result = connectToMySQL(DATABASE).query_db(query,data)
+
+        recipe_list = []
+        
+        if len(result) > 0:
+            for recipe in result:
+                recipe_list.append(cls(recipe))
+
+        return recipe_list
+
+
+    @classmethod
+    def delete_one(cls,data):
+        query =  "DELETE FROM recipes "
+        query += "WHERE id = %(id)s;"
+
+        return connectToMySQL(DATABASE).query_db(query,data)
