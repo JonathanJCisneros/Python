@@ -16,7 +16,7 @@ def new_survey():
             "language" : request.form['language'],
             "comments" : request.form['comments']
         }
-        survey_id = Dojo.add_one(data)
+        survey_id = Dojo.create_one(data)
 
         session["name"] = request.form["name"]
         session["location"] = request.form["location"]
@@ -29,11 +29,7 @@ def new_survey():
 
 @app.route("/result")
 def result():
-    if Dojo.validate_session() == True:
-        return render_template("results.html")
-    else:
-        flash("You must register to see this page", "error_result")
-        return redirect("/")
+    return render_template("results.html")
 
 @app.route("/logout")
 def logout():

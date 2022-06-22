@@ -39,10 +39,3 @@ class Dojo:
             flash("Your comment must be at least 3 characters long.", "error_register_comments")
             isValid = False
         return isValid
-
-    @staticmethod
-    def validate_session():
-        if "user_id" not in session:
-            return False
-        else:
-            return True
