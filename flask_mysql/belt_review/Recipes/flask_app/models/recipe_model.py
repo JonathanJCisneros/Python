@@ -40,15 +40,12 @@ class Recipe:
         query += "FROM recipes "
         query += "WHERE id = %(id)s;"
 
-        result = connectToMySQL(DATABASE).query_db(query,data)
-
-        recipe_list = []
+        result = connectToMySQL(DATABASE).query_db(query, data)
         
         if len(result) > 0:
-            for recipe in result:
-                recipe_list.append(cls(recipe))
-
-        return recipe_list
+            return cls(result[0])
+        else:
+            return None
 
 
     @classmethod
@@ -56,4 +53,12 @@ class Recipe:
         query =  "DELETE FROM recipes "
         query += "WHERE id = %(id)s;"
 
-        return connectToMySQL(DATABASE).query_db(query,data)
+        return connectToMySQL(DATABASE).query_db(query, data)
+
+    @classmethod
+    def update_one(cls, data):
+        query =  "UPDATE recipes "
+        query += "SET name = %(name)s, description = %(description)s, instructions = %(instructions)s, created_at = %(created_at)s, under_thirty = %(under_thirty)s, user_id = %(user_id)s "
+        query += "WHERE id = %(id)s;"
+
+        return connectToMySQL(DATABASE).query_db(query, data)
