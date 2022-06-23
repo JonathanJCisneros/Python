@@ -23,7 +23,7 @@
                     {% for friendship in user_list: %}
                     <tr>
                         <td>{{friendship.first_name}} {{friendship.last_name}}</td>
-                        <td>{{friendship.users2.first_name}} {{friendship.users2.last_name}}</td>
+                        <td>{{friendship.friend_first}} {{friendship.friend_last}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
