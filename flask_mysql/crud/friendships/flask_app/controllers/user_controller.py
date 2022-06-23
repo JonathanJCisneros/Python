@@ -1,6 +1,7 @@
-from flask import request, render_template, redirect
+from flask import redirect, render_template, request
 from flask_app import app
 from flask_app.models.user_model import User
+
 
 @app.route("/")
 @app.route("/friendships")

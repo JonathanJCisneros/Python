@@ -1,6 +1,5 @@
 from flask_app.config.mysqlconnection import connectToMySQL
 from flask_app import DATABASE
-from flask_app.controllers import recipe_controller
 
 class Recipe:
     def __init__(self, data):

@@ -72,5 +72,5 @@ class User:
             isValid = False
         if data['password_confirmation'] != data['password']:
             flash("Your password confirmationan doesn't match.", "error_register_password_confirmation")
-        
+            isValid = False
         return isValid
