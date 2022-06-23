@@ -22,8 +22,8 @@
                 <tbody>
                     {% for friendship in user_list: %}
                     <tr>
-                        <td>{{first_name}}{{last_name}}</td>
-                        <td>{{friend.first_name}}{{friend.last_name}}</td>
+                        <td>{{friendship.first_name}} {{friendship.last_name}}</td>
+                        <td>{{friendship.users2.first_name}} {{friendship.users2.last_name}}</td>
                     </tr>
                     {% endfor %}
                 </tbody>
@@ -55,6 +55,7 @@
                     <br>
                     <select class="form-select" aria-label="Default select example">
                         <option selected>Select User</option>
+
                         <option value="1">One</option>
                     </select>
                 </div>

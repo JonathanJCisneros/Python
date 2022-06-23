@@ -2,6 +2,7 @@ from flask import request, render_template, redirect
 from flask_app import app
 from flask_app.models.user_model import User
 
+@app.route("/")
 @app.route("/friendships")
 def display_all():
     user_list = User.get_all()

@@ -18,15 +18,5 @@ class User:
         query += "LEFT JOIN users AS users2 ON friendships.friend_id = users2.id;"
 
         result = connectToMySQL(DATABASE).query_db(query)
-        result = result[0]
-        user = cls(result)
-        friend_data = {
-            **result,
-            "friend_id" : result['friend_id'],
-            "first_name" : result['users2.first_name'],
-            "last_name" : result['users2.last_name']
-        }
-        friend_info = User(friend_data)
-        friend = friend_info
-        print(friend)
-        return friend
+        print(result)
+        return result
