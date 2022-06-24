@@ -1,0 +1,20 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+}
+
+h3 {
+    margin-top: 25px;
+    text-align: center;
+    color: green;
+}
+
+.table-hover {
+    margin-top: 100px;
+    width: 600px;
+    height: auto;
+}
+
+.table-hover thead tr {
+    margin: 10px 0px;
+}
