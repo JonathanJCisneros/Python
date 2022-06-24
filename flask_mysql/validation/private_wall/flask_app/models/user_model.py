@@ -16,6 +16,7 @@ class User:
         self.created_at = data['created_at']
         self.updated_at = data['updated_at']
 
+
     @classmethod
     def get_info(cls, data):
         query =  "SELECT * "
@@ -28,6 +29,7 @@ class User:
             return False
         return cls(result[0])
 
+
     @classmethod
     def register(cls, data):
         query =  "INSERT INTO users(first_name, last_name, email, password) "
@@ -35,6 +37,30 @@ class User:
 
         new_user = connectToMySQL(DATABASE).query_db(query, data)
         return new_user
+
+
+    @classmethod
+    def get_all(cls):
+        query = "SELECT * FROM users;"
+        
+        results = connectToMySQL(DATABASE).query_db(query)
+        users = []
+        
+        for user in results:
+            users.append(cls(user))
+        return users
+
+
+    @classmethod
+    def get_one(cls, data):
+        query = "SELECT * FROM users WHERE id = %(id)s;"
+        
+        results = connectToMySQL(DATABASE).query_db(query, data)
+        
+        if len(results) < 1:
+            return False
+        return cls(results[0])
+
 
     @staticmethod
     def validate_login(data):
@@ -47,6 +73,7 @@ class User:
             isValid = False
         return is_valid
 
+
     @staticmethod
     def validate_session():
         if "id" in session:
@@ -54,6 +81,7 @@ class User:
         else:
             flash("You must be logged in to see the infromation on this page.", "error_not_logged_in")
             return False
+
 
     @staticmethod
     def validate_registration(data):

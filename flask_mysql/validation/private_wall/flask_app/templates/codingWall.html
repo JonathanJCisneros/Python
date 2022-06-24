@@ -18,10 +18,34 @@
         </div>
         <div class="container">
             <div class="messages">
-                
+                <h2 class="text-center">{{messages|length}} messages for you</h2>
+                <hr class="bg-warning">
+                {% for message in messages %}
+                <div class="card bg-primary my-2">
+                    <div class="card-body">
+                        <h3 class="card-title">{{message.sender}} said:</h3>
+                        <p class="card-text">{{message.content}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/destroy/message/{{message.id}}" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>
+                {% endfor %}
             </div>
             <div class="chat">
-                
+                <h2 class="text-center">Send a Message:</h2>
+                <hr class="bg-warning">
+                {% for u in users %}
+                    {% if u.id != session.id %}
+                    <form class=" p-2"action="/post_message" method="post">
+                        <input type="hidden" name="sender_id" value={{session.id}}>
+                        <input type="hidden" name="receiver_id" value={{u.id}}>
+                        <label for="receiver_id">Message {{u.first_name}}:</label>
+                        <textarea class="form-control" name="content" id="" cols="30" rows="3"></textarea>
+                        <input type="submit" value="Message" class="btn btn-warning">
+                    </form>
+                    {% endif %}
+                {% endfor %}
             </div>
         </div>
     </body>

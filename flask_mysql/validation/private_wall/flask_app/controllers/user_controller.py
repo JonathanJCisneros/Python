@@ -1,6 +1,7 @@
 from flask import render_template, request, redirect, flash, session
 from flask_app import app
 from flask_app.models.user_model import User
+from flask_app.models.message_model import Message
 from flask_bcrypt import Bcrypt
 
 bcrypt = Bcrypt(app)
@@ -15,9 +16,6 @@ def login():
     if User.validate_login(request.form) == False:
         return redirect("/")
     else:
-        data = {
-            "email" : request.form['email']
-        }
         user_in_db = User.get_info(request.form)
 
         if not user_in_db:
@@ -43,8 +41,10 @@ def current_user():
         data = {
             "id" : session['id']
         }
-
-        return render_template("logged_in.html")
+        user = User.get_one(data)
+        messages = Message.get_user_messages(data)
+        users = User.get_all()
+        return render_template("codingWall.html", user = user, users = users, messages = messages)
 
 
 @app.route("/logout")
