@@ -40,6 +40,10 @@ def current_user():
     if User.validate_session() == False:
         return redirect("/")
     else:
+        data = {
+            "id" : session['id']
+        }
+
         return render_template("logged_in.html")
 
 

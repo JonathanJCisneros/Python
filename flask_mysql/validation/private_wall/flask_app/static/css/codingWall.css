@@ -1,0 +1,39 @@
+* {
+    margin: 0px auto;
+    padding: 0px;
+}
+
+.header {
+    margin-top: 75px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.right h2 {
+    margin-right: 25px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.messages {
+    flex: 1;
+    background-color: gray;
+    border-radius: 20px;
+}
+
+.chat {
+    flex: 1;
+    background-color: lightgray;
+    border-radius: 20px;
+}
